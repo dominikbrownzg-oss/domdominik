@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LexSuisse – Legal help in Switzerland</title>
+<style>
+:root{--bg:#faf8f5;--card:#fff;--tx:#1d1d1f;--mut:#65656b;--ac:#d52b1e;--bd:#e4e0d9;--bot:#f0ece6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17171a;--card:#212125;--tx:#f2f2f3;--mut:#a0a0a8;--ac:#ff5a4d;--bd:#34343a;--bot:#2a2a2f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17171a;--card:#212125;--tx:#f2f2f3;--mut:#a0a0a8;--ac:#ff5a4d;--bd:#34343a;--bot:#2a2a2f;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+.w{max-width:1000px;margin:0 auto;padding:0 20px}
+header{padding:18px 0;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:800;font-size:20px}.logo b{color:var(--ac)}
+.hero{padding:40px 0 24px}
+h1{font-size:clamp(28px,5vw,44px);line-height:1.15;margin:0 0 12px;letter-spacing:-.02em}
+.hero p{color:var(--mut);max-width:620px;font-size:18px;margin:0 0 20px}
+.btn{background:var(--ac);color:#fff;border:0;border-radius:10px;padding:12px 20px;font:600 16px inherit;cursor:pointer}
+.warn{background:var(--bot);border:1px solid var(--bd);border-radius:10px;padding:12px 16px;font-size:14px;color:var(--mut);margin:20px 0}
+h2{margin:36px 0 14px;font-size:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:18px}
+.card h3{margin:0 0 6px;font-size:18px}.card .ic{font-size:26px}
+.card p{margin:0 0 10px;color:var(--mut);font-size:14.5px}
+.card ul{margin:0 0 12px;padding-left:18px;font-size:14.5px}
+.card button.ask{background:none;border:1px solid var(--ac);color:var(--ac);border-radius:8px;padding:6px 12px;cursor:pointer;font:600 14px inherit}
+.res li{margin-bottom:6px}
+footer{padding:30px 0 60px;color:var(--mut);font-size:13px}
+/* chat */
+#chat{background:var(--card);border:1px solid var(--bd);border-radius:16px;display:flex;flex-direction:column;height:560px;max-height:80vh;overflow:hidden}
+#log{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:85%;padding:10px 14px;border-radius:14px;white-space:pre-wrap;word-wrap:break-word}
+.m.u{align-self:flex-end;background:var(--ac);color:#fff}
+.m.b{align-self:flex-start;background:var(--bot)}
+.bar{display:flex;gap:8px;padding:12px;border-top:1px solid var(--bd);flex-wrap:wrap}
+.bar select,.bar input{background:var(--bg);color:var(--tx);border:1px solid var(--bd);border-radius:10px;padding:10px;font:inherit}
+.bar input{flex:1;min-width:160px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;padding:0 16px 8px}
+.chips button{background:var(--bot);color:var(--tx);border:1px solid var(--bd);border-radius:20px;padding:5px 12px;font-size:13px;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="w">
+<header><div class="logo">Lex<b>Suisse</b></div><a href="#chat" style="color:var(--ac);font-weight:600;text-decoration:none">Ask the assistant →</a></header>
+
+<section class="hero">
+<h1>Understand your rights in Switzerland.</h1>
+<p>Plain-language guides for the most common legal situations, plus an AI assistant that answers your questions in French, German, Italian or English.</p>
+<button class="btn" onclick="document.getElementById('chat').scrollIntoView({behavior:'smooth'})">Start chatting</button>
+<div class="warn">General information only, not legal advice. Laws vary by canton and change over time. For deadlines or high-stakes decisions, consult a lawyer.</div>
+</section>
+
+<h2>Common topics</h2>
+<div class="grid" id="topics"></div>
+
+<h2 id="chatTitle">Legal assistant</h2>
+<div id="chat">
+<div id="log"></div>
+<div class="chips" id="chips"></div>
+<div class="bar">
+<select id="canton" aria-label="Canton"></select>
+<input id="q" placeholder="Describe your situation…" autocomplete="off">
+<button class="btn" id="send">Send</button>
+</div>
+</div>
+
+<h2>Where to get real help</h2>
+<div class="card res"><ul>
+<li><b>Free initial legal advice:</b> most cantonal bar associations run low-cost or free consultation sessions (search “permanence juridique” + your canton).</li>
+<li><b>Tenants:</b> tenants’ associations such as ASLOCA / Mieterverband.</li>
+<li><b>Employees:</b> trade unions, and your cantonal labour office.</li>
+<li><b>Legal aid (assistance judiciaire):</b> if you can’t afford a lawyer or court costs, apply at your cantonal court.</li>
+<li><b>Victims of crime:</b> cantonal victim support centres (LAVI / OHG). <b>Emergencies:</b> 117 police, 144 ambulance.</li>
+<li><b>Official laws:</b> fedlex.admin.ch (federal law, all languages).</li>
+</ul></div>
+
+<footer>LexSuisse is an informational project and is not a law firm. Do not share sensitive personal data in the chat.</footer>
+</div>
+
+<script>
+const TOPICS=[
+["🏠","Housing & tenancy","Rent, deposits, termination, defects.",["Contest an unfair rent increase within 30 days","Deposit is capped at 3 months’ rent","Termination must use the official form"],"My landlord raised my rent. What can I do?"],
+["💼","Employment","Contracts, notice, dismissal, overtime.",["Notice period: 1 month in year 1, then 2, then 3","Abusive dismissal: object in writing before the end of notice","Sick or pregnant? Special protection periods apply"],"I was dismissed. What are my rights?"],
+["🛂","Residence & citizenship","Permits B, C, L, family reunification, naturalisation.",["Permit type depends on nationality and purpose","Naturalisation needs a minimum period of residence","Missing a renewal deadline can cause problems"],"How do I renew or change my residence permit?"],
+["👨‍👩‍👧","Family & divorce","Marriage, separation, custody, alimony.",["Divorce by mutual consent is faster and cheaper","Custody is decided in the child’s best interests","Maintenance depends on income and needs"],"How does divorce work in Switzerland?"],
+["💳","Debts & enforcement","Payment orders, wage garnishment, bankruptcy.",["Object to a payment order within 10 days (“opposition”)","Garnishment leaves a minimum for living costs","Debt counselling services are often free"],"I received a payment order (commandement de payer). What now?"],
+["🚗","Traffic & fines","Speeding, licence withdrawal, penalty orders.",["Penalty orders can be contested within 10 days","Serious offences can lead to licence withdrawal","Keep every letter and its envelope"],"I got a speeding fine. Can I contest it?"],
+["🛒","Consumer rights","Warranty, online purchases, contracts.",["Legal warranty: 2 years for new goods","Report defects promptly and in writing","No general right to withdraw from online purchases"],"The product I bought is defective. What are my options?"],
+["⚖️","Courts & legal aid","Conciliation, costs, free legal aid.",["Most civil cases start with a conciliation hearing","Legal aid may cover fees if you lack means","Deadlines are strict and rarely extended"],"How do I apply for legal aid?"]
+];
+const CANTONS="AG AI AR BE BL BS FR GE GL GR JU LU NE NW OW SG SH SO SZ TG TI UR VD VS ZG ZH".split(" ");
+const $=id=>document.getElementById(id);
+$("canton").innerHTML='<option value="">Canton (optional)</option>'+CANTONS.map(c=>`<option>${c}</option>`).join("");
+$("topics").innerHTML=TOPICS.map((t,i)=>`<div class="card"><div class="ic">${t[0]}</div><h3>${t[1]}</h3><p>${t[2]}</p><ul>${t[3].map(x=>`<li>${x}</li>`).join("")}</ul><button class="ask" data-i="${i}">Ask the assistant</button></div>`).join("");
+$("chips").innerHTML=["How do I contest a fine?","What’s the notice period for my job?","Can my landlord keep my deposit?"].map(s=>`<button>${s}</button>`).join("");
+
+const SYS="You are LexSuisse, an informational assistant on Swiss law (federal law plus cantonal differences). Reply in the language of the user's last message. Be clear, concise and practical; use plain language and short paragraphs. Mention the relevant legal basis (e.g. CO, CC, LP, LEI) when you are confident. Always flag strict deadlines (e.g. 10 days to object to a payment order, 30 days to contest a rent increase) and that cantonal rules may differ. If unsure, say so rather than guess. You are not a lawyer: for high-stakes matters point to a lawyer, the cantonal bar association's consultation service, legal aid, or a relevant association. For danger or emergencies, give 117 (police) / 144 (ambulance). Do not invent statutes or case law.";
+const hist=[];let busy=false;
+const log=$("log");
+function add(role,text){const d=document.createElement("div");d.className="m "+(role==="user"?"u":"b");d.textContent=text;log.appendChild(d);log.scrollTop=log.scrollHeight;return d}
+add("bot","Hello! I can explain legal topics in Switzerland: housing, work, permits, family, debts and more. What’s your situation? (General information, not legal advice.)");
+
+let samplePromise=null;
+function getSample(){if(!samplePromise)samplePromise=(window.claude&&claude.use?claude.use("sample"):Promise.resolve(null)).catch(()=>null);return samplePromise}
+getSample().then(s=>{if(!s){$("send").disabled=true;$("q").placeholder="Chat is unavailable here";add("bot","The chat assistant isn’t available in this view, but the guides above still work.")}});
+
+async function ask(text){
+  text=text.trim();if(!text||busy)return;
+  const sample=await getSample();if(!sample)return;
+  busy=true;$("send").disabled=true;$("q").value="";
+  add("user",text);hist.push({role:"user",content:text});
+  const c=$("canton").value;
+  const msgs=hist.slice(-12).map(m=>({...m}));
+  msgs[0]={role:"user",content:SYS+(c?"\nUser's canton: "+c+".":"")+"\n\n---\n"+msgs[0].content};
+  if(msgs[0].role!=="user")msgs.unshift({role:"user",content:SYS});
+  const el=add("bot","…");
+  try{
+    const r=await sample(msgs,{cache:false,modelTier:"default",onText:({text})=>{el.textContent=text;log.scrollTop=log.scrollHeight}});
+    el.textContent=r.text;hist.push({role:"assistant",content:r.text});
+  }catch(e){
+    el.textContent=e&&e.code==="not_granted"?"Chat permission was declined. Reload and allow it to use the assistant.":e&&e.code==="rate_limited"?"Too many requests. Please wait a moment and try again.":"Sorry, something went wrong. Please try again.";
+    hist.pop();
+  }
+  busy=false;$("send").disabled=false;$("q").focus();
+}
+$("send").onclick=()=>ask($("q").value);
+$("q").addEventListener("keydown",e=>{if(e.key==="Enter")ask($("q").value)});
+$("chips").onclick=e=>{if(e.target.tagName==="BUTTON")ask(e.target.textContent)};
+$("topics").onclick=e=>{const b=e.target.closest("button.ask");if(!b)return;$("chat").scrollIntoView({behavior:"smooth"});ask(TOPICS[b.dataset.i][4])};
+</script>
+</body>
+</html>
